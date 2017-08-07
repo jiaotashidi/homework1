@@ -1,3 +1,12 @@
+function call_single(A,B){
+	if(A.tail){
+		A = A.tail;
+		call_single(A,B);
+	}else{
+		A.tail = B;
+	}
+}
+
 /**
  * dcate
  * A list consisting of elements of A followed by the
@@ -9,6 +18,8 @@
  */
 function dcate(A, B) {
 	/** Fill in here **/
+	call_single(A,B);
+	return A;
 }
 
 /**
@@ -24,4 +35,19 @@ function dcate(A, B) {
  */
 function sub(L, start, len) {
 	/** Fill in here **/
+	var i = 0,j = 0;
+	var rsList = new List(),p = rsList;;
+	for (; L !== null; L = L.tail,i++) {
+		if(i>=start && j<len)
+		{
+			p.tail = new List(L.head,L.tail);
+	    		p = p.tail;
+			j++;
+		}	
+		if(j == len){
+			p.tail = null;
+			break;
+		}
+	}
+	return rsList.tail;
 }
